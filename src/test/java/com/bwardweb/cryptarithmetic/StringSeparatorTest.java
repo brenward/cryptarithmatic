@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class StringSeparatorTest {
 	
-	StringSeparator separator;
+	private StringSeparator separator;
 	
 	@After
 	public void clearDown(){
@@ -45,33 +45,33 @@ public class StringSeparatorTest {
 	@Test
 	public void setRightHandSide_validInputOutputCorrect(){
 		separator = new StringSeparator("LHS == RHS");
-		assertTrue(separator.getRightHandSide().equals("RHS"));
+		assertEquals("RHS", separator.getRightHandSide());
 	}
 	
 	@Test(expected = InvalidParameterException.class)
 	public void removeRightHandSide_nullInput(){
-		String lhs = StringSeparator.removeRightHandSide(null);	
+		StringSeparator.removeRightHandSide(null);
 	}
 	
 	@Test(expected = InvalidParameterException.class)
 	public void removeRightHandSide_emptyInput(){
-		String lhs = StringSeparator.removeRightHandSide("");	
+		StringSeparator.removeRightHandSide("");
 	}
 	
 	@Test(expected = InvalidParameterException.class)
 	public void removeRightHandSide_noEquals(){
-		String lhs = StringSeparator.removeRightHandSide("Test Test");	
+		StringSeparator.removeRightHandSide("Test Test");
 	}
 	
 	@Test(expected = InvalidParameterException.class)
 	public void removeRightHandSide_multipleEquals(){
-		String lhs = StringSeparator.removeRightHandSide("Test == Test == Test");	
+		StringSeparator.removeRightHandSide("Test == Test == Test");
 	}
 	
 	@Test
 	public void removeRightHandSide_validInput(){
 		String lhs = StringSeparator.removeRightHandSide("Test == Test");
-		assertTrue(lhs.equals("Test"));
+		assertEquals("Test", lhs);
 		
 	}
 	
@@ -106,26 +106,26 @@ public class StringSeparatorTest {
 	@Test
 	public void setLeftHandSide_validInputNoPluses(){
 		separator = new StringSeparator("LHS == RHS");
-		assertTrue(separator.getLeftHandSide().size() == 1);
-		assertTrue(separator.getLeftHandSide().get(0).equals("LHS"));
+		assertEquals(1, separator.getLeftHandSide().size());
+		assertEquals("LHS", separator.getLeftHandSide().get(0));
 	}
 	
 	@Test
 	public void setLeftHandSide_validInput1Plus(){
 		separator = new StringSeparator("LHS + LHS2 == RHS");
-		assertTrue(separator.getLeftHandSide().size() == 2);
-		assertTrue(separator.getLeftHandSide().get(0).equals("LHS"));
-		assertTrue(separator.getLeftHandSide().get(1).equals("LHS2"));
+		assertEquals(2, separator.getLeftHandSide().size());
+		assertEquals("LHS", separator.getLeftHandSide().get(0));
+		assertEquals("LHS2", separator.getLeftHandSide().get(1));
 	}
 	
 	@Test
 	public void setLeftHandSide_validInput3Pluses(){
 		separator = new StringSeparator("LHS + LHS1 + LHS2 + LHS3 == RHS");
-		assertTrue(separator.getLeftHandSide().size() == 4);
-		assertTrue(separator.getLeftHandSide().get(0).equals("LHS"));
-		assertTrue(separator.getLeftHandSide().get(1).equals("LHS1"));
-		assertTrue(separator.getLeftHandSide().get(2).equals("LHS2"));
-		assertTrue(separator.getLeftHandSide().get(3).equals("LHS3"));
+		assertEquals(4, separator.getLeftHandSide().size());
+		assertEquals("LHS", separator.getLeftHandSide().get(0));
+		assertEquals("LHS1", separator.getLeftHandSide().get(1));
+		assertEquals("LHS2", separator.getLeftHandSide().get(2));
+		assertEquals("LHS3", separator.getLeftHandSide().get(3));
 	}
 
 

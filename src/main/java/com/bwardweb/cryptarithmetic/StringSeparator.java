@@ -73,6 +73,4 @@ public class StringSeparator {
 			return count;
 		}
 	}
-	
-	
 }
